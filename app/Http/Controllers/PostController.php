@@ -28,7 +28,8 @@ class PostController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
-            'image' => $image
+            'image' => $image,
+            'published_at' => $request->published_at
         ]);
 
         session()->flash('success', 'Post created succesfully.');
@@ -47,15 +48,9 @@ class PostController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.create')->with('posts', $post);
     }
 
     /**
